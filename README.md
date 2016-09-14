@@ -73,10 +73,14 @@ spec:
         securityContext:
           privileged: true
         env:
-        - name: NODE_NAME
+        - name: POD_NAME
           valueFrom:
             fieldRef:
-              fieldPath: spec.nodeName
+              fieldPath: metadata.name
+        - name: POD_NAMESPACE
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.namespace
         volumeMounts:
         - name: log
           mountPath: /log
